@@ -1,0 +1,131 @@
+pipeline {
+    agent any
+    stages {
+        stage('stage1') {
+            steps { 
+                echo 'Welcome to devops class'
+            }
+        }
+    }
+}
+
+
+
+node {
+    stage('stage 1') {
+        sh 'echo Hello World'
+    }
+}
+
+
+node {
+    stage('stage1') {
+        sh 'touch file1'
+    }
+}
+
+
+node {
+    stage('stage1') {
+        sh 'touch file2'
+        sh 'mkdir dir1'
+    }
+}
+
+node {
+    stage('stage1') {
+        sh '''
+         touch file3
+         mkdir dir3
+         mv file3 file4
+         lscpu
+         lsmem
+         '''
+
+    }
+}
+
+
+pipeline {
+    agent any
+    stages {
+        stage('stage1') {
+            steps { 
+                git 'https://github.com/nagswe/project1.git'
+            }
+        }
+    }
+}
+
+pipeline {
+    agent any
+    stages {
+        stage('stage1') {
+            steps { 
+                git 'https://github.com/nagswe/swiggy123.git'
+            }
+            }
+        stage('stage2') {
+            steps {
+                sh 'echo "integration of git with jenkins is done"'
+            }
+        }
+
+    
+    }
+}
+
+
+pipeline {
+    agent any
+    stages {
+        stage('stage1') {
+            steps { 
+                git 'https://github.com/nagswe/swigg2.git'
+            }
+            }
+            
+        stage('stage2') {
+            steps {
+                sh 'echo "integration of git with jenkins is done"'
+            }
+        }
+        stage('stage3') {
+            steps {
+                sh 'touch file5'
+            }
+        }
+        }
+    }
+
+
+
+pipeline {
+  agent any
+  stages {
+    stage ('build') {
+    input {
+      message "Press Ok to continue"
+      submitter "user1,user2"
+      parameters {
+        string(name:'username',defaultValue:'user',description:'Username of the user Pressing ok')
+      }
+    }
+    steps {
+        echo "User"
+    }
+  }
+}
+}
+
+
+pipeline {
+    agent any
+    stages {
+        stage('Hello World') {
+            steps {
+                sh 'echo Hello World'
+            }
+        }
+    }
+}
